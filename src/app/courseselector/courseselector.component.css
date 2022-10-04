@@ -1,0 +1,39 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.container{
+  text-align: center;
+  background-color: #5F6F94;
+}
+
+ul{
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+li{
+  padding: 10px;
+  align-content: center;
+  align-items: center;
+}
+button{
+  justify-content: center;
+  margin-top: 0.25rem;
+  background-color: #97D2EC;
+  font-family: "Courier New", sans-serif;
+  color: white;
+  border-color: cornflowerblue;
+  border-radius: 10px;
+
+}
+.track-selector{
+  float: right;
+  align-content: end;
+  align-items: end;
+  align-self: end;
+  justify-content: end;
+}
+
+

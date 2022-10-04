@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background-color: #5F6F94;
+  font-family: "Courier New", sans-serif;
+  color: white;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+h2 {
+  padding-left: 1.7rem;
+}
+
+table {
+  padding-left: 30px;
+}
+
+.filter-box, ul {
+  justify-content: start;
+  align-items: start;
+  display: flex;
+  list-style-type: none;
+  padding: 0.5rem;
+}
+
+li {
+  padding: 0.5rem;
+}
+
+tr {
+  text-align: left;
+  background-color: #97D2EC;
+
+  padding-bottom: 5px;
+}
+
+tr:hover {
+  background: #619fba;
+}
+
+th {
+  padding: 10px;
+}
+
+.submit-box {
+  padding-right: 0.6rem;
+  padding-bottom: 0.4rem;
+  justify-content: center;
+  float: right;
+
+}
+
+.header-icons {
+  position: absolute;
+  padding-left: 5px;
+}
+

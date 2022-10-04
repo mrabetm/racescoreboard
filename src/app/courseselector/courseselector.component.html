@@ -1,0 +1,45 @@
+<div class="container">
+  <form [formGroup]="entryForm" (ngSubmit)="onSubmit()">
+  <div class="form-group" id="entry-form">
+    <ul>
+      <li>
+        <mat-form-field appearance="fill">
+          <mat-label for="car">Selecteer je auto</mat-label>
+          <mat-select id="car" formControlName="car">
+            <mat-option *ngFor="let car of carList" [value]="car">{{car.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p></p>
+      </li>
+      <li>
+        <mat-form-field appearance="fill">
+          <mat-label for="track">Selecteer de track</mat-label>
+          <mat-select id="track" formControlName="track">
+            <mat-option *ngFor="let track of tracks$ | async" [value]="track" (click)="setSelectedTrack(track)">{{track.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </li>
+      <li>
+        <mat-form-field appearance="fill">
+          <mat-label for="date">
+            Vul je tijd in (1:07:276)
+          </mat-label>
+          <input matInput id="entrytime" maxlength="9" formControlName="entrytime" mask="0:00:000">
+        </mat-form-field>
+      </li>
+      <li>
+        <mat-form-field appearance="fill">
+          <mat-label for="playername">
+            Naam
+          </mat-label>
+          <input matInput id="playername" formControlName="playername">
+        </mat-form-field>
+      </li>
+      <li>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!entryForm">Entry toevoegen</button>
+      </li>
+    </ul>
+  </div>
+  </form>
+<app-listpage [selectedTrack]="selectedTrack"></app-listpage>
+</div>

@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Tijden op {{selectedTrack.name}}</h2>
+  <div class="filter-box">
+    <ul>
+      <li>
+        <mat-form-field appearance="fill">
+          <mat-label>Week</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let week of uniq" (click)="filterBasedByWeek(week)">{{"Week " + week}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </li>
+      <li>
+        <mat-form-field appearance="fill">
+        <mat-label>Filter op auto</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let car of carList" [value]="car.id" (click)="filterBasedByCar(car)">{{car.name}}</mat-option>
+        </mat-select>
+        </mat-form-field>
+      </li>
+    </ul>
+  </div>
+
+  <table>
+    <tr>
+      <th>Ranking</th>
+      <th>Tijd</th>
+      <th>Naam</th>
+      <th>Punten</th>
+      <th>Datum</th>
+      <th>Auto</th>
+    </tr>
+    <tr *ngFor="let entry of entries; let i = index">
+      <th>{{entry.ranking}}</th>
+      <th>{{entry?.entryTime}}</th>
+      <th>{{entry.player?.name || 'John Doe'}}</th>
+      <th>{{entry.score}}</th>
+      <th>{{entry.date | date: 'dd-mm-yyyy' }}</th>
+      <th>{{entry.car?.name || 'MadLad'}}</th>
+    </tr>
+  </table>
+
+  <div class="submit-box">
+    <button mat-raised-button color="primary">Ronde indienen</button>
+    <button mat-icon-button><mat-icon>more_vert</mat-icon></button>
+  </div>
+
+</div>
