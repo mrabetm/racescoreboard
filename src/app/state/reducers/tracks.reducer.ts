@@ -1,6 +1,6 @@
 import {TrackModel} from "../../models/track";
 import {createReducer, on} from "@ngrx/store";
-import {retrieveTrackList} from "../actions/tracks.actions";
+import {retrieveTrackList, retrieveTrackListSuccess} from "../actions/tracks.actions";
 
 export const initialState: TrackModel[] = [{
   id: 0,
@@ -12,5 +12,6 @@ export const initialState: TrackModel[] = [{
 
 export const trackReducer = createReducer(
   initialState,
-  on(retrieveTrackList, (state, {tracks}) => tracks)
+  on(retrieveTrackList, ((state)=> state)),
+  on(retrieveTrackListSuccess, (state, {tracks}) => tracks),
 )

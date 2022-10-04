@@ -13,6 +13,10 @@ export const removeTrack = createAction(
 )
 
 export const retrieveTrackList = createAction(
+  '[Track List/API] Retrieve Tracks',
+)
+
+export const retrieveTrackListSuccess = createAction(
   '[Track List/API] Retrieve Tracks Success',
   props<{ tracks: TrackModel[]}>()
 )

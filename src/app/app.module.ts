@@ -23,6 +23,10 @@ import {StoreModule} from "@ngrx/store";
 import {entriesReducer} from './state/reducers/entries.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {trackReducer} from "./state/reducers/tracks.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {TracksEffects} from "./state/effects/tracks.effects";
+import {carReducer} from "./state/reducers/cars.reducer";
+import {CarsEffects} from "./state/effects/cars.effects";
 // import {collectionReducer} from "./state/reducers/collection.reducer";
 
 
@@ -56,7 +60,8 @@ export const options: Partial<null|IConfig> | (()=> Partial<IConfig>) = null;
     ReactiveFormsModule,
     HttpClientModule,
     NgxMaskModule.forRoot(),
-    StoreModule.forRoot({entries: entriesReducer, tracks: trackReducer}),
+    EffectsModule.forRoot([TracksEffects, CarsEffects]),
+    StoreModule.forRoot({entries: entriesReducer, tracks: trackReducer, cars: carReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 50 })
   ],
   providers: [],

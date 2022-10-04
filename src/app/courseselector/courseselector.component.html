@@ -6,7 +6,7 @@
         <mat-form-field appearance="fill">
           <mat-label for="car">Selecteer je auto</mat-label>
           <mat-select id="car" formControlName="car">
-            <mat-option *ngFor="let car of carList" [value]="car">{{car.name}}</mat-option>
+            <mat-option *ngFor="let car of cars$ | async" [value]="car">{{car.name}}</mat-option>
           </mat-select>
         </mat-form-field>
         <p></p>

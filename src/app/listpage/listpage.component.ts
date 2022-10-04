@@ -83,6 +83,7 @@ export class ListpageComponent implements OnInit, OnChanges{
     if (changes['selectedTrack']?.currentValue) {
       this.entries = [...this.selectedTrack.entryList]
       this.entries = this.assignPointsToEntries(this.entries)
+      console.log(this.entries)
     }
 
     let weeks = this.selectedTrack.entryList.map((entry) =>{

@@ -12,6 +12,8 @@ import {Store} from "@ngrx/store";
 import {selectEntries} from "../state/selectors/entries.selectors";
 import {retrieveTrackList} from "../state/actions/tracks.actions";
 import {selectTracks} from "../state/selectors/tracks.selectors";
+import {selectCars} from "../state/selectors/cars.selectors";
+import {retrieveCarList} from "../state/actions/cars.actions";
 
 @Component({
   selector: 'app-courseselector',
@@ -33,6 +35,7 @@ export class CourseselectorComponent {
   submitEntry!: EntryModelPostForm;
   toBeInsertedDate: Date = new Date();
 
+  cars$ = this.store.select(selectCars)
   tracks$ = this.store.select(selectTracks)
 
 
@@ -110,7 +113,8 @@ export class CourseselectorComponent {
   }
 
   ngOnInit(): void {
-    this.trackSbService.storeGetTracks().subscribe((tracks)=> this.store.dispatch(retrieveTrackList({tracks})))
+    this.store.dispatch(retrieveTrackList())
+    this.store.dispatch(retrieveCarList())
     console.log(this.tracks$)
   }
 

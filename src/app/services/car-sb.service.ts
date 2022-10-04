@@ -28,6 +28,13 @@ export class CarSbService {
       else this.restPostCar(car)
     }
   }
+  storeGetCars(): Observable<CarModel[]>{
+    return this.httpClient.get<CarModel[]>(`http://localhost:8082/car`)
+      .pipe(
+        map((cars)=>
+        cars || [])
+      )
+  }
 
   restGetEntries(): Observable<CarModel[]>{
     return this.httpClient.get<CarModel[]>(`http://localhost:8082/car`)
