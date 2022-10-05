@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCj5gpH3z9KttLmlHsm-COdkd4WRbu7WjY",
-    authDomain: "racescoreboard.firebaseapp.com",
-    projectId: "racescoreboard",
-    storageBucket: "racescoreboard.appspot.com",
-    messagingSenderId: "130220978152",
-    appId: "1:130220978152:web:0cb54f775d4b279e717e5d"
+    projectId: 'race-scoreboard-35f01',
+    appId: '1:1044212658949:web:b1b492fbbc3f1d9cae7d6c',
+    storageBucket: 'race-scoreboard-35f01.appspot.com',
+    apiKey: 'AIzaSyCL-sK0ZcSn2RvlRRqxlnQ4WfXxBxdpac8',
+    authDomain: 'race-scoreboard-35f01.firebaseapp.com',
+    messagingSenderId: '1044212658949',
   }
 };
 

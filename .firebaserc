@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "race-scoreboard-35f01": {
+      "hosting": {
+        "racescoreboard": [
+          "race-scoreboard-35f01"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "race-scoreboard-35f01"
+  }
+}

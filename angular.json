@@ -96,6 +96,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "racescoreboard:build:production",
+            "firebaseProject": "race-scoreboard-35f01",
+            "firebaseHostingSite": "race-scoreboard-35f01"
+          }
         }
       }
     }

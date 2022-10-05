@@ -10,9 +10,9 @@ import {TrackModel} from "../models/track";
 import {EntryModel, EntryModelPostForm} from "../models/entry";
 import {Store} from "@ngrx/store";
 import {selectEntries} from "../state/selectors/entries.selectors";
-import {retrieveTrackList} from "../state/actions/tracks.actions";
-import {selectTracks} from "../state/selectors/tracks.selectors";
-import {selectCars} from "../state/selectors/cars.selectors";
+import {retrieveTrackList, retrieveTrackListSuccess} from "../state/actions/tracks.actions";
+import {selectTracksFeatureState} from "../state/selectors/tracks.selectors";
+import {selectCarsFeatureState} from "../state/selectors/cars.selectors";
 import {retrieveCarList} from "../state/actions/cars.actions";
 
 @Component({
@@ -35,8 +35,8 @@ export class CourseselectorComponent {
   submitEntry!: EntryModelPostForm;
   toBeInsertedDate: Date = new Date();
 
-  cars$ = this.store.select(selectCars)
-  tracks$ = this.store.select(selectTracks)
+  cars$ = this.store.select(selectCarsFeatureState)
+  tracks$ = this.store.select(selectTracksFeatureState)
 
 
   entryForm = new FormGroup({
@@ -115,6 +115,7 @@ export class CourseselectorComponent {
   ngOnInit(): void {
     this.store.dispatch(retrieveTrackList())
     this.store.dispatch(retrieveCarList())
+    console.log(retrieveTrackList)
     console.log(this.tracks$)
   }
 

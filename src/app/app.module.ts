@@ -27,6 +27,10 @@ import {EffectsModule} from "@ngrx/effects";
 import {TracksEffects} from "./state/effects/tracks.effects";
 import {carReducer} from "./state/reducers/cars.reducer";
 import {CarsEffects} from "./state/effects/cars.effects";
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 // import {collectionReducer} from "./state/reducers/collection.reducer";
 
 
@@ -62,7 +66,10 @@ export const options: Partial<null|IConfig> | (()=> Partial<IConfig>) = null;
     NgxMaskModule.forRoot(),
     EffectsModule.forRoot([TracksEffects, CarsEffects]),
     StoreModule.forRoot({entries: entriesReducer, tracks: trackReducer, cars: carReducer}),
-    StoreDevtoolsModule.instrument({ maxAge: 50 })
+    StoreDevtoolsModule.instrument({ maxAge: 50 }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]

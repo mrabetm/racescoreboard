@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {selectTracks} from "./state/selectors/tracks.selectors";
-import {TrackSbService} from "./services/track-sb.service";
-import {Store} from "@ngrx/store";
-import {retrieveTrackList} from "./state/actions/tracks.actions";
+
 
 @Component({
   selector: 'app-root',
