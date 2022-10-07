@@ -1,10 +1,15 @@
 import {createAction, props} from "@ngrx/store";
-import {EntryModel} from "../../models/entry";
+import {EntryModel, EntryModelPostForm} from "../../models/entry";
 
 export const addEntry = createAction(
   '[Entry List] Add Entry',
-  props<{entryId: number}>()
+  props<{entry: EntryModelPostForm}>()
 );
+
+export const addEntrySuccess = createAction(
+  '[Entry List] Add Entry Success',
+    props<{entry: EntryModelPostForm}>()
+)
 
 export const removeEntry = createAction(
   '[Entry List] remove Entry',
@@ -13,6 +18,11 @@ export const removeEntry = createAction(
 
 
 export const retrieveEntryList = createAction(
-  '[Entry List/API] Retrieve Books Success',
+  '[Entry List/API] Retrieve Entries',
+)
+
+export const retrieveEntryListSuccess = createAction(
+  '[Entry List/API] Retrieve Entries Success',
   props<{ entries: EntryModel[]}>()
 )
+

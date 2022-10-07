@@ -1,6 +1,6 @@
 import {ErrorHandler, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {map, Observable, ObservedValueOf, Subscription} from "rxjs";
 import {PlayerSbService} from "./player-sb.service";
 import {EntryModel, EntryModelPost, EntryModelPostForm} from "../models/entry";
 
@@ -27,8 +27,10 @@ export class EntrySbService {
   }
 
   storeGetEntries(): Observable<EntryModel[]>{
-    return this.httpClient.get<{entries: EntryModel[]}>('http://localhost:8082/entry')
-      .pipe(map((entryList) => entryList.entries || [] ))
+    return this.httpClient.get<EntryModel[]>('http://localhost:8082/entry')
+      .pipe(
+        map((entries) =>
+          entries || [] ))
   }
 
   restGetEntries(): Observable<EntryModel[]>{
@@ -45,25 +47,13 @@ export class EntrySbService {
       )
   }
 
+  // storePostEntry(entry: EntryModelPostForm):{
+  //   return this.httpClient.post<EntryModelPostForm>(``)
+  // }
   restPostEntry(entry: EntryModelPostForm){
-    console.log(entry)
-    // const body: EntryModel = {
-    //   "entryTime": entry.entryTime,
-    //   "date": entry.date,
-    //   "score": entry.score,
-    //   "player":{
-    //     "id": 1
-    //   },
-    //   "track":{
-    //     "id": entry.track?.id
-    //   }
-    // }
-    this.httpClient.post<EntryModel>('http://localhost:8082/entry', entry, {headers: new HttpHeaders(
-        {'Content-Type': 'application/json',
-        }
-      ), responseType: 'json', observe: 'response'}).subscribe(responseData => {
-        console.log(responseData)
-    })
+    return this.httpClient.post<EntryModel>('http://localhost:8082/entry', entry, {headers: new HttpHeaders(
+        {'Content-Type': 'application/json'}
+      ),})
   }
 
   restPutEntry(entry: EntryModel){

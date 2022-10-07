@@ -15,7 +15,7 @@
         <mat-form-field appearance="fill">
           <mat-label for="track">Selecteer de track</mat-label>
           <mat-select id="track" formControlName="track">
-            <mat-option *ngFor="let track of tracks$ | async" [value]="track" (click)="setSelectedTrack(track)">{{track.name}}</mat-option>
+            <mat-option *ngFor="let track of tracks$ | async as t" [value]="track" (click)="setSelectedTrack(track)">{{track.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </li>

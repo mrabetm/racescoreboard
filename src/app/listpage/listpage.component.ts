@@ -4,6 +4,8 @@ import {EntryserviceService} from '../services/entryservice.service';
 import {CarModel} from "../models/car";
 import {CarSbService} from "../services/car-sb.service";
 import {EntryModel} from "../models/entry";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogSubmitRoundComponent} from "../dialog-submit-round/dialog-submit-round.component";
 
 @Component({
   selector: 'app-listpage',
@@ -30,11 +32,21 @@ export class ListpageComponent implements OnInit, OnChanges{
 
   entries: TrackModel['entryList'] = this.selectedTrack.entryList;
 
-
-
-  constructor(private entryService: EntryserviceService, private carSbService: CarSbService) {
+  constructor(private entryService: EntryserviceService, private carSbService: CarSbService, public dialog: MatDialog) {
 
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogSubmitRoundComponent, {
+      width: '400px',
+      data: this.entries
+    })
+
+    dialogRef.afterClosed().subscribe(result =>{
+      console.log('this dialog was closed, following data was transferred' , result)
+    })
+  }
+
+
 
   filterBasedByCar(car: CarModel){
     return this.entries = this.selectedTrack.entryList.filter((entry) =>{
@@ -89,10 +101,8 @@ export class ListpageComponent implements OnInit, OnChanges{
     let weeks = this.selectedTrack.entryList.map((entry) =>{
       return entry.week
     })
-    this.uniq = [...new Set(weeks)]
-    console.log(this.uniq)
-    // console.log(this.entries['week'] as keyof EntryModel)
-  }
+    this.uniq = [...new Set(weeks.filter(n => !!n) as number[])]
+    }
 
   ngOnInit(): void {
   }

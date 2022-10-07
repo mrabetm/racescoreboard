@@ -5,27 +5,23 @@ import {PlayerModel, PlayerModelPost} from "./player";
 
 export interface EntryModel{
   id: number;
-  ranking: number;
+  ranking?: number;
   entryTime: number;
-  week: number;
+  week?: number;
   date: Date;
   car: CarModel;
-  score: number;
+  score?: number;
   player: PlayerModel;
   track: TrackModel;
 }
 
-export type EntryModelPostForm = {
-  id: number;
-  entryTime: number;
-  date: Date;
-  car: CarModel;
-  score: number;
-  player: PlayerModelPost;
-  track: TrackModelPost;
-}
+export type EntryModelPostForm = Omit<EntryModel, "ranking" | "week" | "score">
 
 export type EntryModelPost = Partial<EntryModel> & { id: number }
+
+//ranking, week
+
+
 
 
 

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Bevestigen</h1>
+<div mat-dialog-content>
+  Wil je deze ronde indienen (deze actie kan niet worden ontdaan)?
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onCancel()">Nee</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="onSubmit()">Ja</button>
+</div>

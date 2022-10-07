@@ -31,6 +31,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import {EntriesEffects} from "./state/effects/entries.effects";
+import { DialogSubmitRoundComponent } from './dialog-submit-round/dialog-submit-round.component';
 // import {collectionReducer} from "./state/reducers/collection.reducer";
 
 
@@ -43,6 +45,7 @@ export const options: Partial<null|IConfig> | (()=> Partial<IConfig>) = null;
     ListpageComponent,
     HeaderComponent,
     CourseselectorComponent,
+    DialogSubmitRoundComponent,
 
   ],
   exports: [
@@ -60,11 +63,12 @@ export const options: Partial<null|IConfig> | (()=> Partial<IConfig>) = null;
     MatDialogModule,
     MatInputModule,
     MatIconModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxMaskModule.forRoot(),
-    EffectsModule.forRoot([TracksEffects, CarsEffects]),
+    EffectsModule.forRoot([TracksEffects, CarsEffects, EntriesEffects]),
     StoreModule.forRoot({entries: entriesReducer, tracks: trackReducer, cars: carReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 50 }),
     provideFirebaseApp(() => initializeApp(environment.firebase)),

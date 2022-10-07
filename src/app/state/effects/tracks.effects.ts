@@ -15,9 +15,9 @@ export class TracksEffects{
       .pipe(
         map(tracks => retrieveTrackListSuccess({tracks})),
         catchError(()=> EMPTY)
-      ))
+      )
     )
-  );
+  ));
 
 
 

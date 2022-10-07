@@ -9,11 +9,14 @@ import {CarModel} from "../models/car";
 import {TrackModel} from "../models/track";
 import {EntryModel, EntryModelPostForm} from "../models/entry";
 import {Store} from "@ngrx/store";
-import {selectEntries} from "../state/selectors/entries.selectors";
 import {retrieveTrackList, retrieveTrackListSuccess} from "../state/actions/tracks.actions";
-import {selectTracksFeatureState} from "../state/selectors/tracks.selectors";
-import {selectCarsFeatureState} from "../state/selectors/cars.selectors";
+import {selectAllTracks, selectTracksFeatureState} from "../state/selectors/tracks.selectors";
+import {selectAllCars, selectCarsFeatureState} from "../state/selectors/cars.selectors";
 import {retrieveCarList} from "../state/actions/cars.actions";
+import {Observable} from "rxjs";
+import {selectAll, TrackModelState} from "../state/reducers/tracks.reducer";
+import {addEntry, retrieveEntryList} from "../state/actions/entries.actions";
+import {selectAllEntries} from "../state/selectors/entries.selectors";
 
 @Component({
   selector: 'app-courseselector',
@@ -32,11 +35,12 @@ export class CourseselectorComponent {
     entryList: [],
   }
 
-  submitEntry!: EntryModelPostForm;
+  submitEntry?: EntryModelPostForm = undefined;
   toBeInsertedDate: Date = new Date();
 
-  cars$ = this.store.select(selectCarsFeatureState)
-  tracks$ = this.store.select(selectTracksFeatureState)
+  entries$: Observable<EntryModel[]>;
+  cars$: Observable<CarModel[]>;
+  tracks$: Observable<TrackModel[]>;
 
 
   entryForm = new FormGroup({
@@ -55,7 +59,11 @@ export class CourseselectorComponent {
               private entrySbService: EntrySbService,
               private _trackSbService: TrackSbService,
               private carSbService: CarSbService,
-              private _store: Store) {
+              private _store: Store<TrackModelState>) {
+    this.tracks$ = this.store.select(selectAllTracks)
+    this.cars$ = this.store.select(selectAllCars)
+    this.entries$ = this.store.select(selectAllEntries)
+    console.log(this.tracks$)
   }
 
 
@@ -67,11 +75,12 @@ export class CourseselectorComponent {
     this._trackSbService = value;
   }
 
-  get store(): Store {
+
+  get store(): Store<TrackModelState> {
     return this._store;
   }
 
-  set store(value: Store) {
+  set store(value: Store<TrackModelState>) {
     this._store = value;
   }
 
@@ -100,7 +109,6 @@ export class CourseselectorComponent {
       entryTime: parseInt(entryTimeString),
       date: new Date(),
       car: this.entryForm.value.car,
-      score: 0,
       player: {
         name: this.entryForm.value.playername!,
       },
@@ -109,14 +117,14 @@ export class CourseselectorComponent {
       }
     } as EntryModelPostForm)
 
-    this.entrySbService.restPostEntry(this.submitEntry)
+    this.store.dispatch(addEntry({entry: this.submitEntry}))
+
   }
 
   ngOnInit(): void {
     this.store.dispatch(retrieveTrackList())
     this.store.dispatch(retrieveCarList())
-    console.log(retrieveTrackList)
-    console.log(this.tracks$)
+    this.store.dispatch(retrieveEntryList())
   }
 
 }

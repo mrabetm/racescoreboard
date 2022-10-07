@@ -5,7 +5,7 @@
       <li>
         <mat-form-field appearance="fill">
           <mat-label>Week</mat-label>
-          <mat-select>
+          <mat-select [disabled]="this.selectedTrack.name == 'example'">
             <mat-option *ngFor="let week of uniq" (click)="filterBasedByWeek(week)">{{"Week " + week}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -13,7 +13,7 @@
       <li>
         <mat-form-field appearance="fill">
         <mat-label>Filter op auto</mat-label>
-        <mat-select>
+        <mat-select [disabled]="this.selectedTrack.name == 'example'">
           <mat-option *ngFor="let car of carList" [value]="car.id" (click)="filterBasedByCar(car)">{{car.name}}</mat-option>
         </mat-select>
         </mat-form-field>
@@ -41,7 +41,7 @@
   </table>
 
   <div class="submit-box">
-    <button mat-raised-button color="primary">Ronde indienen</button>
+    <button mat-raised-button color="primary" (click)="openDialog()" [disabled]="this.selectedTrack.name == 'example'">Ronde indienen</button>
     <button mat-icon-button><mat-icon>more_vert</mat-icon></button>
   </div>
 

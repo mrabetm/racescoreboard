@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Track {
@@ -25,19 +23,23 @@ public class Track {
     @Column(name = "length")
     private double length;
 
+//    @OneToMany(mappedBy = "track")
+//    @JsonBackReference
+//    private List<Round> roundList = new ArrayList<>();
+
     @OneToMany(mappedBy = "track")
     @JsonManagedReference(value = "entry-track")
     private List<Entry> entryList = new ArrayList<>();
 
-    public Track(int id, String name, String location, double length, List<Entry> entryList) {
-        this.id = id;
-        this.name = name;
-        this.location = location;
-        this.length = length;
-        this.entryList = entryList;
-    }
+  public Track(int id, String name, String location, double length, List<Entry> entryList) {
+    this.id = id;
+    this.name = name;
+    this.location = location;
+    this.length = length;
+    this.entryList = entryList;
+  }
 
-    public Track() {
+  public Track() {
     }
 
     public int getId() {
@@ -79,4 +81,12 @@ public class Track {
     public void setEntryList(List<Entry> entryList) {
         this.entryList = entryList;
     }
+
+//  public List<Round> getRoundList() {
+//    return roundList;
+//  }
+//
+//  public void setRoundList(List<Round> roundList) {
+//    this.roundList = roundList;
+//  }
 }

@@ -7,6 +7,6 @@ export const selectTracksFeatureState = createFeatureSelector<EntityState<TrackM
 
 export const selectAllTracks = createSelector(
   selectTracksFeatureState,
-  selectAll
+  selectAll,
 )
 
